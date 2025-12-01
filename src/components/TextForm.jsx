@@ -21,6 +21,20 @@ export default function TextForm(props) {
         setColor(newColor);
          props.showAlert("changing colors","success");
     }
+     // text copy thase
+    const handleCopy = () => {
+      var text = document.getElementById("myBox");
+      text.select();
+      navigator.clipboard.writeText(text.value);
+      props.showAlert("Copied to clipboard!","success");
+    }
+
+    // remove rxtra space
+    const handleExtraSpaces = () => {
+      let newText = text.split(/[ ]+/);
+      setText(newText.join(" "))
+      props.showAlert("Extra spaces removed!","success");
+    }
     const handleDownload = () => {
     const element = document.createElement("a");
     const file = new Blob([text], { type: "text/plain" });
@@ -48,6 +62,8 @@ export default function TextForm(props) {
             <button className="btn btn-danger mx-1"  onClick={handleColorChange}>Change Text Color</button>
             <button className="btn btn-primary mx-1" onClick={handleclearClick}>Clear Text</button>
             <button className="btn btn-success mx-1" onClick={handleDownload}> Download Text</button>
+            <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy text</button>
+      <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
         </div>
         <div className="container" style={{color: props.mode==='dark'?'white':'#042743'}}>
             <h2>your text summary</h2>

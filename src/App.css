@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+/* Accordion arrow color change */
+.accordion-button::after {
+    filter: invert(1);
+}
